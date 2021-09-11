@@ -49,7 +49,7 @@ public class Jmart
         if (discountPercentage > 100.0f){
             return 0;
         }
-        return (int) (price * discountPercentage / 100);
+        return (int) (price * (100-discountPercentage) / 100);
     }
     
     
