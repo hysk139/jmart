@@ -36,6 +36,7 @@ public class Jmart
     
     public static float getDiscountPercentage(int before, int after)
     {
+        
         if (before < after){
             return 0.0f;
         }
