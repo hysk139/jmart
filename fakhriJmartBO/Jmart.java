@@ -22,6 +22,19 @@ public class Jmart
         System.out.println("Commission multiplier = "+ getCommissionMultiplier());
         System.out.println("Adjusted price for 1000 = " + getAdjustedPrice(1000));
         System.out.println("Admin fee for 1000 = " + getAdminFee(1000));
+        
+        Product RTX3090 = create();
+        System.out.println("Product ID = " + RTX3090.id);
+        System.out.println("Product name = " + RTX3090.name);
+        System.out.println("Product weight = " + RTX3090.weight);
+        System.out.println("Product Used? = " + RTX3090.conditionUsed);
+        System.out.println("Product price = " + String.format("%.2f", RTX3090.priceTag.price));
+        System.out.println("Product discount = " + RTX3090.priceTag.discount);
+        System.out.println("Product category = " + RTX3090.category);
+        System.out.println("Product rating = " + RTX3090.rating.getAverage());
+        
+        
+        
     }
     
     public static int getPromo()
@@ -74,7 +87,10 @@ public class Jmart
         return (int) (price * 0.05f);
     }
     
-    
+    public static Product create(){
+        Product newProd = new Product("RTX 3090", 2, false, (new PriceTag(25000000L)), ProductCategory.GAMING);
+        return newProd;
+    }
     
 
 
