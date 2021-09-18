@@ -31,7 +31,7 @@ public class PriceTag
         return (this.price * (1-discount));
     }
     
-    private double getAdminFee(){
+    public double getAdminFee(){
         if (getDiscountedPrice() < BOTTOM_PRICE){
             return BOTTOM_FEE;
         }
