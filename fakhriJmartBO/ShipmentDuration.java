@@ -20,17 +20,17 @@ public class ShipmentDuration
         this.bit = bit;
     }
     
-    public ShipmentDuration(int... args){
+    public ShipmentDuration(ShipmentDuration... args){
         int flag = 0;
-        for (int i:args){
-            flag = flag|i;
+        for (ShipmentDuration i: args){
+            flag = flag|i.bit;
         };
         
         this.bit = flag;
     }
     
     public boolean isDuration(ShipmentDuration reference){
-        return false;
+       return false;
     }
     
     
