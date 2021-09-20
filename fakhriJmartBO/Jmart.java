@@ -72,6 +72,17 @@ public class Jmart
         return newProd;
     }
     
+    public static Product createProduct(){
+        return null;
+    }
+    
+    public static Coupon createCoupon(){
+        return null;
+    }
+    
+    public static ShipmentDuration createShipmentDuration(){
+        return null;
+    }
 
 
 }
