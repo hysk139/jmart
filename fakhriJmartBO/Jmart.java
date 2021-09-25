@@ -68,18 +68,17 @@ public class Jmart
     }
     
     public static Product create(){
-        Product newProd = new Product("RTX 3090", 2, false, (new PriceTag(25000000L)), ProductCategory.GAMING);
-        return newProd;
+       return null;
     }
     
     public static Product createProduct()
     {
         
-        return new Product("Macbook Pro", 3, false, new PriceTag(5000000), ProductCategory.ELECTRONIC);
+        return null;
     }
     public static Coupon createCoupun()
     {
-        return new Coupon("Discount 50%", 1, Coupon.Type.DISCOUNT, 50, 10000);
+        return null;
     }
     public static ShipmentDuration createShipmentDuration()
     {
