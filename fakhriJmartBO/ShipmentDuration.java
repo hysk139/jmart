@@ -29,8 +29,13 @@ public class ShipmentDuration
         this.bit = flag;
     }
     
-    public boolean isDuration(ShipmentDuration reference){
-       return false;
+    public boolean isDuration(ShipmentDuration reference)
+    {
+        if((bit & reference.bit) != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     

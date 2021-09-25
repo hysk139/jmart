@@ -72,16 +72,18 @@ public class Jmart
         return newProd;
     }
     
-    public static Product createProduct(){
-        return null;
+    public static Product createProduct()
+    {
+        
+        return new Product("Macbook Pro", 3, false, new PriceTag(5000000), ProductCategory.ELECTRONIC);
     }
-    
-    public static Coupon createCoupon(){
-        return null;
+    public static Coupon createCoupun()
+    {
+        return new Coupon("Discount 50%", 1, Coupon.Type.DISCOUNT, 50, 10000);
     }
-    
-    public static ShipmentDuration createShipmentDuration(){
-        return null;
+    public static ShipmentDuration createShipmentDuration()
+    {
+        return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.SAME_DAY);
     }
 
 
