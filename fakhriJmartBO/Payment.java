@@ -14,10 +14,12 @@ public class Payment extends Transaction implements FileParser
     public ShipmentDuration shipmentDuration;
     
     public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration){
-        
+        super(product.id, buyerId, id);
+        this.shipmentDuration = shipmentDuration;
     }
-    
+
     public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration){
+        super(id, buyerId, storeId);
         
     }
     @Override
@@ -28,6 +30,10 @@ public class Payment extends Transaction implements FileParser
     @Override
     public Transaction perform() {
         return null;
+    }
+    @Override
+    public boolean read(String content){
+        return false;
     }
     
 }
