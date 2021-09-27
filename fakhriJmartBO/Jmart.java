@@ -80,9 +80,9 @@ public class Jmart
     {
         return null;
     }
-    public static ShipmentDuration createShipmentDuration()
+    public static Duration createDuration()
     {
-        return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.SAME_DAY);
+        return null;
     }
 
 

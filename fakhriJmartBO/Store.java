@@ -35,6 +35,11 @@ public class Store extends Recognizable implements FileParser
     public boolean read(String content){
         return false;
     }
+    
+    @Override
+    public String toString(){
+        return "name: " + this.name + "\naddress: " + this.address + "\nphoneNumber: " + this.phoneNumber;
+    }
 
     
 }

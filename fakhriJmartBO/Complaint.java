@@ -7,37 +7,23 @@ package fakhriJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Complaint extends Transaction implements FileParser
+public class Complaint extends Recognizable implements FileParser
 {
     // instance variables - replace the example below with your own
-    public int paymentId;
     public String desc;
-
-    public Complaint(int id, Payment payment, String desc)
+    public String date = "OOP";
+    public Complaint(int id, String desc)
     {
-        super(id, 0, 0);
+        super(id);
         this.desc = desc;
         
     }
     
-    public Complaint(int id, int buyerId, int storeId, int paymentId, String desc){
-        super(id, buyerId, storeId);
-        this.desc = desc;
-        this.paymentId = paymentId;
-    }
     @Override
     public boolean read(String content){
         return false;
     }
-    @Override
-    public boolean validate() {
-        return false;
-    }
-
-    @Override
-    public Transaction perform() {
-        return null;
-    }
+    
 
     
 }

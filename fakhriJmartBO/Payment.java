@@ -7,33 +7,27 @@ package fakhriJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Payment extends Transaction implements FileParser
+public class Payment extends Invoice implements Transactor
 {
     // instance variables - replace the example below with your own
-    public int paymentId;
-    public ShipmentDuration shipmentDuration;
+    public int productCount;
+    public Shipment shipment;
     
-    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration){
-        super(product.id, buyerId, id);
-        this.shipmentDuration = shipmentDuration;
-    }
 
-    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration){
+    public Payment(int id, int buyerId, int storeId, int productCount, Shipment shipment){
         super(id, buyerId, storeId);
-        
+        this.productCount = productCount;
     }
     @Override
     public boolean validate() {
         return false;
     }
-
     @Override
-    public Transaction perform() {
+    public Transactor perform() {
         return null;
     }
-    @Override
-    public boolean read(String content){
-        return false;
+    public double getTotalPay(){
+        return 0;
     }
     
 }
