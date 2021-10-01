@@ -48,10 +48,18 @@ public class Coupon extends Recognizable implements FileParser
     public double apply(PriceTag priceTag){
         this.used = true;
         if (type == Type.DISCOUNT){
-            return (priceTag.getAdjustedPrice() * (100-this.cut)/100);
+            if (cut >= 100){
+                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (100 / 100));
+            }
+            else if (cut <= 0){
+                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (0 / 100)); 
+            }
+            else{
+                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (cut / 100));
+            }
         }
-        else{
-            return (priceTag.getAdjustedPrice() - this.cut);
+        else {
+            return (priceTag.getAdjustedPrice() * this.cut / 100);
         }
     }
     

@@ -17,6 +17,7 @@ public class Payment extends Invoice implements Transactor
     public Payment(int id, int buyerId, int storeId, int productCount, Shipment shipment){
         super(id, buyerId, storeId);
         this.productCount = productCount;
+        this.shipment = shipment;
     }
     @Override
     public boolean validate() {
@@ -26,8 +27,9 @@ public class Payment extends Invoice implements Transactor
     public Transactor perform() {
         return null;
     }
+    @Override
     public double getTotalPay(){
-        return 0;
+        return 0.0;
     }
     
 }

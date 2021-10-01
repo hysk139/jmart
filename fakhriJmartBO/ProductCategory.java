@@ -28,7 +28,5 @@ public enum ProductCategory
     TRAVEL, 
     WEDDING;
     
-    public void ProductCategory()
-    {
-    }
+
 }
