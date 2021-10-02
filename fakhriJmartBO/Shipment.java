@@ -53,7 +53,7 @@ public class Shipment implements FileParser
         
         public String getEstimatedArrival(Date reference){
             if (this.bit == INSTANT.bit || this.bit == SAME_DAY.bit){
-                return ESTIMATION_FORMAT.format(reference.getDay());
+                return ESTIMATION_FORMAT.format(reference);
             }
             else if (this.bit == NEXT_DAY.bit){
                 return ESTIMATION_FORMAT.format(reference.getDay() + 1);
