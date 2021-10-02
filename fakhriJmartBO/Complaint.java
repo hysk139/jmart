@@ -1,4 +1,5 @@
 package fakhriJmartBO;
+import java.util.Date;
 
 
 /**
@@ -11,12 +12,12 @@ public class Complaint extends Recognizable implements FileParser
 {
     // instance variables - replace the example below with your own
     public String desc;
-    public String date;
+    public Date date;
     public Complaint(int id, String desc)
     {
         super(id);
         this.desc = desc;
-        this.date = "OOP";
+        this.date = new Date();
     }
     
     @Override
