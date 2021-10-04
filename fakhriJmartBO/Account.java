@@ -1,5 +1,6 @@
 package fakhriJmartBO;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Write a description of class Account here.
@@ -13,12 +14,26 @@ public class Account extends Recognizable implements FileParser
     public String name;
     public String email;
     public String password;
+    public static final String REGEX_EMAIL = "([A-Za-z0-9+&_*~]+(?:\\.[a-zA-Z0-9&_*~]+)*@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)";
+    public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
     public Account(int id, String name, String email, String password)
     {
         super(id);
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+    public boolean validate() {
+        Pattern emailPattern = Pattern.compile(REGEX_EMAIL);
+        Pattern passwordPattern = Pattern.compile(REGEX_PASSWORD);
+        Matcher emailMatcher = emailPattern.matcher(this.email);
+        Matcher passwordMatcher = passwordPattern.matcher(this.password);
+        if(emailMatcher.find() && passwordMatcher.find()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     @Override
     public boolean read(String content){

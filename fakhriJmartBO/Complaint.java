@@ -1,5 +1,6 @@
 package fakhriJmartBO;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -12,7 +13,7 @@ public class Complaint extends Recognizable implements FileParser
 {
     // instance variables - replace the example below with your own
     public String desc;
-    public Date date;
+    public final Date date;
     public Complaint(int id, String desc)
     {
         super(id);
@@ -25,6 +26,10 @@ public class Complaint extends Recognizable implements FileParser
         return false;
     }
     
-
-    
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return "Complaint :\nDate: " + this.date + "\nDesc: " + this.desc;
+    }
 }
+    
+

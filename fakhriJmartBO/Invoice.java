@@ -1,5 +1,6 @@
 package fakhriJmartBO;
 import java.util.Date;
+import java.util.ArrayList;
 
 
 /**
@@ -29,7 +30,7 @@ public abstract class Invoice extends Recognizable implements FileParser
         
     }
     
-    public Date date;
+    public final Date date;
     public int buyerId;
     public int productId;
     public int complaintId;
@@ -45,7 +46,13 @@ public abstract class Invoice extends Recognizable implements FileParser
         this.status = Status.WAITING_CONFIRMATION;
         this.complaintId = 1;
     }
-    
+    public class Record{
+        public Status status;
+        public Date date;
+        public String message;
+        
+        public ArrayList<Record> history;
+    }
     @Override
     public boolean read(String content){
         return false;

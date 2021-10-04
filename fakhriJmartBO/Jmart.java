@@ -14,9 +14,10 @@ public class Jmart
 
     public static void main(String[] args) 
     {
-        System.out.println(Shipment.Duration.SAME_DAY.getEstimatedArrival(new Date()));
-        Store store = new Store(69, "Mechanical Keyboard", "Jalan Asia Afrika", "0812696969");
-        System.out.println(store.validate());
+        Account account = new Account(1, "Fakhri", "ahmad.fakhri91@ui.ac.id", "Csgo1234");
+        System.out.println(account.validate());
+        Complaint complaint = new Complaint(7, "Kena delay");
+        System.out.println(complaint.toString());
     }
     
     
