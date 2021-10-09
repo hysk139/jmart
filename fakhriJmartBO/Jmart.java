@@ -1,6 +1,8 @@
 package fakhriJmartBO;
 import java.util.Date;
 
+import fakhriJmartBO.Shipment.Duration;
+
 
 /**
  * Write a description of class Jmart here.
@@ -14,10 +16,12 @@ public class Jmart
 
     public static void main(String[] args) 
     {
-        Account account = new Account(1, "Fakhri", "ahmad.fakhri91@ui.ac.id", "Csgo1234");
+        /*Account account = new Account(1, "Fakhri", "ahmad.fakhri91@ui.ac.id", "Csgo1234");
         System.out.println(account.validate());
         Complaint complaint = new Complaint(7, "Kena delay");
-        System.out.println(complaint.toString());
+        System.out.println(complaint.toString());*/
+    	
+    	System.out.println("Hello World");
     }
     
     
