@@ -8,7 +8,7 @@ import javax.print.attribute.standard.MediaSize.Other;
  * @author (your name)
  * @version (a version number or a date)
  */
-public abstract class Recognizable implements Comparable <Recognizable>
+public class Recognizable implements Comparable <Recognizable>
 {
     public final int id;
     protected Recognizable(int id)
