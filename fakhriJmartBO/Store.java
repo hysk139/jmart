@@ -7,18 +7,19 @@ import java.util.regex.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Store extends Recognizable implements FileParser
+public class Store
 {
     // instance variables - replace the example below with your own
     public String name;
     public String address;
     public String phoneNumber;
+    public double balance;
     public static final String REGEX_PHONE = "[0-9]{9,12}";
     public static final String REGEX_NAME = "^[A-Z]((?!\\s{2}).)*.{4,20}$";
     
-    public Store(int accountId, String name, String address, String phoneNumber)
+    public Store(int accountId, String name, String address, String phoneNumber, double balance)
     {
-        
+        this.balance = balance;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -45,10 +46,7 @@ public class Store extends Recognizable implements FileParser
         }
     }
     
-    @Override
-    public boolean read(String content){
-        return false;
-    }
+    
     
     @Override
     public String toString(){

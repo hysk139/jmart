@@ -7,7 +7,7 @@ package fakhriJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Coupon extends Recognizable implements FileParser
+public class Coupon extends Recognizable 
 {
     public enum Type{
         DISCOUNT,
@@ -36,8 +36,8 @@ public class Coupon extends Recognizable implements FileParser
         return false;
     }
     
-    public boolean canApply(PriceTag priceTag){
-        if (priceTag.getAdjustedPrice()>= minimum && this.used==false){
+    public boolean canApply(double price, double discount){
+        if (Treasury.getAdjustedPrice(price, discount)>= minimum && this.used==false){
             return true;
         }
         else{
@@ -45,26 +45,24 @@ public class Coupon extends Recognizable implements FileParser
         }
     }
     
-    public double apply(PriceTag priceTag){
+    public double apply(double price, double discount){
         this.used = true;
         if (type == Type.DISCOUNT){
             if (cut >= 100){
-                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (100 / 100));
+                return (Treasury.getAdjustedPrice(price, discount) - Treasury.getAdjustedPrice(price, discount) * (100 / 100));
             }
             else if (cut <= 0){
-                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (0 / 100)); 
+                return (Treasury.getAdjustedPrice(price, discount) - Treasury.getAdjustedPrice(price, discount) * (0 / 100)); 
             }
             else{
-                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (cut / 100));
+                return (Treasury.getAdjustedPrice(price, discount) - Treasury.getAdjustedPrice(price, discount) * (cut / 100));
             }
         }
         else {
-            return (priceTag.getAdjustedPrice() * this.cut / 100);
+            return (Treasury.getAdjustedPrice(price, discount) * this.cut / 100);
         }
     }
     
-    @Override
-    public boolean read(String content){
-        return false;
-    }
+    
+    
 }

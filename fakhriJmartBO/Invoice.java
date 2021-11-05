@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public abstract class Invoice extends Recognizable implements FileParser
+public abstract class Invoice extends Recognizable 
 {
     // instance variables - replace the example below with your own
     public enum Status{
@@ -53,10 +53,7 @@ public abstract class Invoice extends Recognizable implements FileParser
         
         public ArrayList<Record> history;
     }
-    @Override
-    public boolean read(String content){
-        return false;
-    }
+    
     
     public abstract double getTotalPay();
 }

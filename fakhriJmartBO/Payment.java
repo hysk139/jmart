@@ -7,7 +7,7 @@ package fakhriJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Payment extends Invoice implements Transactor
+public class Payment extends Invoice 
 {
     // instance variables - replace the example below with your own
     public int productCount;
@@ -19,14 +19,7 @@ public class Payment extends Invoice implements Transactor
         this.productCount = productCount;
         this.shipment = shipment;
     }
-    @Override
-    public boolean validate() {
-        return false;
-    }
-    @Override
-    public Transactor perform() {
-        return null;
-    }
+    
     @Override
     public double getTotalPay(){
         return 0.0;

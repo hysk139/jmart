@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Complaint extends Recognizable implements FileParser
+public class Complaint extends Recognizable 
 {
     // instance variables - replace the example below with your own
     public String desc;
@@ -21,11 +21,8 @@ public class Complaint extends Recognizable implements FileParser
         this.date = new Date();
     }
     
-    @Override
-    public boolean read(String content){
-        return false;
-    }
     
+   
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return "Complaint :\nDate: " + this.date + "\nDesc: " + this.desc;

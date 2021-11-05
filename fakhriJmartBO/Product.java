@@ -2,46 +2,40 @@ package fakhriJmartBO;
 
 
 
-public class Product extends Recognizable implements FileParser
+public class Product extends Recognizable 
 {
     //private static int idCounter;
     public String name;
     public int weight;
     public boolean conditionUsed;
-    public PriceTag priceTag;
+    public double discount;
     public ProductCategory category;
-    public ProductRating rating;
-    public int storeId;
-    public Shipment.MultiDuration multiDuration;
+    public double price;
+    public int accountId;
+    public byte shipmentPlans;
     
-    public Product(int id, int storeId, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration){
+    
+    public Product(int accountId, String name, int weight, boolean conditionUsed, double price, double discount,ProductCategory category, byte shipmentPlans){
         
+    	this.accountId = accountId;
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
-        this.priceTag = priceTag;
+        this.price = price;
+        this.discount = discount;
         this.category = category;
-        this.rating = new ProductRating();
-        this.storeId = storeId;
-        this.multiDuration = multiDuration;
+        this.shipmentPlans = shipmentPlans;;
+        
+        
     }
     
-    public Product(int id, Store store, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category){
-        
-        this.name = name;
-        this.weight = weight;
-        this.conditionUsed = conditionUsed;
-        this.priceTag = priceTag;
-        this.category = category;
-        this.rating = new ProductRating();
-    }
-    @Override
-    public boolean read(String content){
-        return false;
-    }
+  
+    
+    
     @Override
     public String toString(){
-        return "Name: " + this.name + "\nWeight: "+ this.weight + "\nconditionUsed: " + this.conditionUsed + "\npriceTag: " + this.priceTag.price + "\ncategory: " + this.category + "\nrating: " + this.rating.getAverage() + "\nstoreId: " + this.storeId;
+        return("Name: " + name + "\nWeight: " + weight + "\nconditionUsed: " + conditionUsed + 
+               "\nprice: " + price + "\ncategory: " + category + "\ndiscount: " + discount + "\naccountId: " + accountId);
     }
     
 

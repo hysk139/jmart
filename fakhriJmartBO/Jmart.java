@@ -7,7 +7,6 @@ import java.util.List;
 import com.google.gson.*;
 
 
-import fakhriJmartBO.Shipment.Duration;
 
 
 /**
@@ -44,18 +43,7 @@ public class Jmart
     }
     
     
-    public static Product createProduct()
-    {
-        return null;
-    }
-    public static Coupon createCoupun()
-    {
-        return null;
-    }
-    public static Duration createDuration()
-    {
-        return null;
-    }
+    
 
 
 }
