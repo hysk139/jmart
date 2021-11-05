@@ -1,5 +1,11 @@
 package fakhriJmartBO;
 import java.util.Date;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import com.google.gson.*;
+
 
 import fakhriJmartBO.Shipment.Duration;
 
@@ -13,15 +19,28 @@ import fakhriJmartBO.Shipment.Duration;
 public class Jmart
 {
 
-
+	class Country{
+		public String name;
+		public int population;
+		public List<String> listOfStates;
+	}
+	
+	
     public static void main(String[] args) 
     {
-        /*Account account = new Account(1, "Fakhri", "ahmad.fakhri91@ui.ac.id", "Csgo1234");
-        System.out.println(account.validate());
-        Complaint complaint = new Complaint(7, "Kena delay");
-        System.out.println(complaint.toString());*/
-    	
-    	System.out.println("Hello World");
+        String filepath = "/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/city.json";
+        Gson gson = new Gson();
+        try {
+        	BufferedReader br = new BufferedReader(new FileReader(filepath));
+        	Country input = gson.fromJson(br, Country.class);
+        	System.out.println("name: " + input.name);
+        	System.out.println("population: " + input.population);
+        	System.out.println("states: ");
+        	input.listOfStates.forEach(state -> System.out.println(state));
+        }
+        catch (IOException e){
+        	e.printStackTrace();
+        }
     }
     
     

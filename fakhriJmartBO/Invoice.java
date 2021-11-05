@@ -38,7 +38,7 @@ public abstract class Invoice extends Recognizable implements FileParser
     public Status status;
     
     protected Invoice(int id, int buyerId, int productId){
-        super(id);
+        
         this.buyerId = buyerId;
         this.productId = productId;
         this.date = new Date();

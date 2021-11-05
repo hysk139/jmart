@@ -15,7 +15,7 @@ public class Product extends Recognizable implements FileParser
     public Shipment.MultiDuration multiDuration;
     
     public Product(int id, int storeId, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration){
-        super(id);
+        
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
@@ -27,7 +27,7 @@ public class Product extends Recognizable implements FileParser
     }
     
     public Product(int id, Store store, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category){
-        super(id);
+        
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;

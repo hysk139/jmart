@@ -11,10 +11,10 @@ import javax.print.attribute.standard.MediaSize.Other;
 public class Recognizable implements Comparable <Recognizable>
 {
     public final int id;
-    protected Recognizable(int id)
+    protected Recognizable()
     {
         // initialise instance variables
-        this.id = id;
+        this.id = 6969;
     }
     
     @Override 
