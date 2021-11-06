@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Account extends Recognizable 
+public class Account extends Serializable 
 {
     // instance variables - replace the example below with your own
     public String name;
@@ -17,12 +17,13 @@ public class Account extends Recognizable
     public double balance;
     public static final String REGEX_EMAIL = "([A-Za-z0-9+&_*~]+(?:\\.[a-zA-Z0-9&_*~]+)*@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)";
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
-    public Account(int id, String name, String email, String password)
+    public Account(String name, String email, String password, double balance)
     {
         
         this.name = name;
         this.email = email;
         this.password = password;
+        this.balance = balance;
     }
     public boolean validate() {
         Pattern emailPattern = Pattern.compile(REGEX_EMAIL);

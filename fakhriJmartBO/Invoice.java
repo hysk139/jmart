@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public abstract class Invoice extends Recognizable 
+public abstract class Invoice extends Serializable 
 {
     // instance variables - replace the example below with your own
     public enum Status{
@@ -37,7 +37,7 @@ public abstract class Invoice extends Recognizable
     public Rating rating;
     public Status status;
     
-    protected Invoice(int id, int buyerId, int productId){
+    protected Invoice(int buyerId, int productId){
         
         this.buyerId = buyerId;
         this.productId = productId;

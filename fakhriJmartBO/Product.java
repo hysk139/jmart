@@ -2,7 +2,7 @@ package fakhriJmartBO;
 
 
 
-public class Product extends Recognizable 
+public class Product extends Serializable 
 {
     //private static int idCounter;
     public String name;

@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Complaint extends Recognizable 
+public class Complaint extends Serializable 
 {
     // instance variables - replace the example below with your own
     public String desc;

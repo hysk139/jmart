@@ -14,13 +14,15 @@ public class Payment extends Invoice
     public Shipment shipment;
     
 
-    public Payment(int id, int buyerId, int storeId, int productCount, Shipment shipment){
-        super(id, buyerId, storeId);
+    public Payment(int buyerId, int storeId, int productCount, Shipment shipment){
+        super(buyerId, storeId);
         this.productCount = productCount;
         this.shipment = shipment;
     }
     
-    @Override
+    
+
+	@Override
     public double getTotalPay(){
         return 0.0;
     }
