@@ -1,8 +1,10 @@
 package fakhriJmartBO;
 import java.io.FileNotFoundException;
+import java.util.stream.Collectors;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
@@ -42,7 +44,11 @@ public class Jmart
             // sesuaikan argument method read sesuai dengan lokasi resource
             List<Product> list = read("C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/randomProductList.json");
             List<Product> filtered = filterByPrice(list, 98000.0, 0.0);
-            filtered.forEach(product -> System.out.println(product.price));
+            //filtered.forEach(product -> System.out.println(product.price));
+            List<Product> nameFilter = filterByName(list, "gtx", 1, 5);
+            nameFilter.forEach(product -> System.out.println(product.name));
+            List<Product> idFilter = filterByAccountId(list, 1, 0, 5);
+            idFilter.forEach(product -> System.out.println(product.name));
         }catch (Throwable t)
         {
             t.printStackTrace();
@@ -97,6 +103,22 @@ public class Jmart
         }
         return filtered;    
     }
+    
+    private static List<Product> paginate(List<Product> list, int page, int pageSize, Predicate<Product> pred) {
+        return list.stream().filter(q -> pred.predicate(q)).skip(page * pageSize).limit(pageSize).collect(Collectors.toList());
+    }
+
+    public static List<Product> filterByName(List<Product> list, String search, int page, int pageSize) {
+        Predicate<Product> predicate = q -> (q.name.toLowerCase().contains(search.toLowerCase()));
+        return paginate(list, page, pageSize, predicate);
+    }
+
+    public static List<Product> filterByAccountId(List<Product> list, int accountId, int page, int pageSize) {
+        Predicate<Product> predicate = q -> (q.accountId == accountId);
+        return paginate(list, page, pageSize, predicate);
+    }
+    
+    
     
     
 
