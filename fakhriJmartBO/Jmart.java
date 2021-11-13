@@ -40,19 +40,21 @@ public class Jmart
     {
         
        
-        try{
-            // sesuaikan argument method read sesuai dengan lokasi resource
-            List<Product> list = read("C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/randomProductList.json");
-            List<Product> filtered = filterByPrice(list, 98000.0, 0.0);
-            //filtered.forEach(product -> System.out.println(product.price));
-            List<Product> nameFilter = filterByName(list, "gtx", 1, 5);
-            nameFilter.forEach(product -> System.out.println(product.name));
-            List<Product> idFilter = filterByAccountId(list, 1, 0, 5);
-            idFilter.forEach(product -> System.out.println(product.name));
-        }catch (Throwable t)
-        {
-            t.printStackTrace();
-        }
+    	try{
+    		   String filepath = "C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/account.json" ;
+
+    		   JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
+    		   tableAccount.add(new Account("nama", "email", "password", 100));
+    		   tableAccount.writeJson();
+    		   
+    		   //tableAccount = new JsonTable<>(Account.class, filepath);
+    		   tableAccount.forEach(account -> System.out.println(account.toString()));
+    		  }
+
+    		  catch (Throwable t)
+    		  {
+    		   t.printStackTrace();
+    		  }
         
         
     }
