@@ -28,7 +28,12 @@ import com.google.gson.stream.JsonReader;
  */
 public class Jmart
 {
-
+	
+    public static long DELIVERED_LIMIT_MS = 1;
+    public static long ON_DELIVERY_LIMIT_MS = 1;
+    public static long ON_PROGRESS_LIMIT_MS = 1;
+    public static long WAITING_CONF_LIMIT_MS = 1;
+	
 	class Country{
 		public String name;
 		public int population;
@@ -41,23 +46,50 @@ public class Jmart
         
        
     	try{
-    		   String filepath = "C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/account.json" ;
-
-    		   JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
-    		   tableAccount.add(new Account("nama", "email", "password", 100));
-    		   tableAccount.writeJson();
-    		   
-    		   //tableAccount = new JsonTable<>(Account.class, filepath);
-    		   tableAccount.forEach(account -> System.out.println(account.toString()));
-    		  }
-
-    		  catch (Throwable t)
-    		  {
-    		   t.printStackTrace();
-    		  }
-        
-        
+    		JsonTable<Payment> table = new JsonTable<>(Payment.class,"C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/randomPaymentList.json");
+            ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-PP", Jmart::paymentTimekeeper);
+            paymentPool.start();
+            table.forEach(payment -> paymentPool.add(payment));
+            while (paymentPool.size() != 0) ;
+            paymentPool.exit();
+            while (paymentPool.isAlive()) ;
+            System.out.println("Thread exited successfully");
+            Gson gson = new Gson();
+            table.forEach(payment -> {
+                String history = gson.toJson(payment.history);
+                System.out.println(history);
+            });
+           }
+    	catch (Exception e) {
+    		System.out.println(e);
+    	}
+        catch (Throwable t){
+               t.printStackTrace();
+        }
+    	
     }
+    
+    public static boolean paymentTimekeeper(Payment payment) {
+    	Payment.Record record = payment.history.get(payment.history.size() - 1);
+        long elapsed = System.currentTimeMillis() - record.date.getTime();
+        if (record.status.equals(Invoice.Status.WAITING_CONFIRMATION) && (elapsed > WAITING_CONF_LIMIT_MS)) {
+            record.status = Invoice.Status.FAILED;
+            return true;
+        } else if (record.status.equals(Invoice.Status.ON_PROGRESS) && (elapsed > ON_PROGRESS_LIMIT_MS)) {
+            record.status = Invoice.Status.FAILED;
+            return true;
+        } else if (record.status.equals(Invoice.Status.ON_DELIVERY) && (elapsed > ON_PROGRESS_LIMIT_MS)) {
+            record.status = Invoice.Status.DELIVERED;
+            return true;
+        } else if (record.status.equals(Invoice.Status.DELIVERED) && (elapsed > DELIVERED_LIMIT_MS)) {
+            record.status = Invoice.Status.FINISHED;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /*
     
     public static List<Product> read(String filepath) throws FileNotFoundException {
         List<Product> products = new ArrayList<>();
@@ -120,7 +152,7 @@ public class Jmart
         return paginate(list, page, pageSize, predicate);
     }
     
-    
+    */
     
     
 

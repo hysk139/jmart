@@ -14,36 +14,33 @@ import com.google.gson.stream.JsonReader;
 
 import fakhriJmartBO.Invoice.Status;
 
-public class JsonTable<T> extends Vector {
-	
-	public final String filepath;
+public class JsonTable<T> extends Vector<T>{
+    public final String filepath;
     private static final Gson gson = new Gson();
-    
-    public JsonTable(Class<T> clazz, String filepath) throws IOException{
+
+    public JsonTable(Class<T> clazz, String filepath) throws IOException {
         this.filepath = filepath;
-        try{
-            Class<T[]> array = (Class<T[]>) Array.newInstance(clazz, 0).getClass();
-            T[] hasil = JsonTable.readJson(array, filepath);
-            Collections.addAll(this, hasil);
-        }
-        catch(FileNotFoundException e){
-            File file = new File(filepath);
+        File f = new File(filepath);
+        f.getParentFile().mkdirs();
+        f.createNewFile();
+        Class<T[]> arrayType = (Class<T[]>) Array.newInstance(clazz, 0).getClass();
+        T[] loaded = readJson(arrayType, filepath);
+        if (loaded != null) {
+            Collections.addAll(this, loaded);
         }
     }
-    
     public static <T> T readJson(Class<T> clazz, String filepath) throws FileNotFoundException{
-        final JsonReader read = new JsonReader(new FileReader(filepath));
-        return gson.fromJson(read, clazz);
+        JsonReader freader = new JsonReader(new FileReader(filepath));
+        return gson.fromJson(freader, clazz);
     }
-    public void writeJson() throws IOException{
-        writeJson(this, this.filepath);
-    };
+
+    public void writeJson () throws IOException {
+        writeJson(this, filepath);
+    }
     public static void writeJson(Object object, String filepath) throws IOException{
-        final FileWriter writer = new FileWriter(filepath);
-        writer.write(gson.toJson(object));
+        FileWriter writer = new FileWriter(filepath);
+        String json = gson.toJson(object);
+        writer.write(json);
         writer.close();
     }
-    
-	
-	
 }

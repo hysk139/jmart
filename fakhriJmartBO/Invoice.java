@@ -9,51 +9,40 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public abstract class Invoice extends Serializable 
+public abstract class Invoice extends Serializable
 {
-    // instance variables - replace the example below with your own
-    public enum Status{
+    public int buyerId;
+    public int productId;
+    public int complaintId;
+    public Rating rating;
+    public final Date date;
+
+    protected Invoice(int buyerId, int productId) {
+        this.buyerId = buyerId;
+        this.productId = productId;
+        date = java.util.Calendar.getInstance().getTime();
+        this.complaintId = -1;
+        this.rating = Rating.NONE;
+    }
+
+    public enum Status {
         WAITING_CONFIRMATION,
         CANCELLED,
         ON_PROGRESS,
         ON_DELIVERY,
         COMPLAINT,
         FINISHED,
-        FAILED
-        
+        FAILED,
+        DELIVERED
     }
-    public enum Rating{
+
+    public enum Rating {
         NONE,
         BAD,
         NEUTRAL,
         GOOD
-        
     }
-    
-    public final Date date;
-    public int buyerId;
-    public int productId;
-    public int complaintId;
-    public Rating rating;
-    public Status status;
-    
-    protected Invoice(int buyerId, int productId){
-        
-        this.buyerId = buyerId;
-        this.productId = productId;
-        this.date = new Date();
-        this.rating = Rating.NONE;
-        this.status = Status.WAITING_CONFIRMATION;
-        this.complaintId = 1;
-    }
-    public class Record{
-        public Status status;
-        public Date date;
-        public String message;
-        
-        public ArrayList<Record> history;
-    }
-    
-    
-    public abstract double getTotalPay();
+
+    public abstract double getTotalPay(Product product);
+
 }
