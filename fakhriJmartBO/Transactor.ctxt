@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=Transactor
-comment0.text=\r\n\ Abstract\ class\ Transaction\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ (your\ name\ here)\r\n\ @version\ (version\ number\ or\ date\ here)\r\n
-comment1.params=
-comment1.target=boolean\ validate()
-comment2.params=
-comment2.target=Transactor\ perform()
-numComments=3
