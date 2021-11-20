@@ -1,21 +1,8 @@
 package com.fakhriJmartBO;
-import java.io.FileNotFoundException;
-import java.util.stream.Collectors;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 
 import com.fakhriJmartBO.dbjson.JsonDBEngine;
-import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
-import java.util.Date;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -49,9 +36,9 @@ public class Jmart
     {
         
     	
-    	 JsonDBEngine.Run(Jmart.class);
-         SpringApplication.run(Jmart.class, args);
-         Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
+    	JsonDBEngine.Run(Jmart.class);
+        SpringApplication.run(Jmart.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
     	/*try{
     		JsonTable<Payment> table = new JsonTable<>(Payment.class,"C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/randomPaymentList.json");
             ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-PP", Jmart::paymentTimekeeper);
@@ -74,9 +61,11 @@ public class Jmart
                t.printStackTrace();
         }*/
     	
+       
     }
+}
     
-    public static boolean paymentTimekeeper(Payment payment) {
+    /*public static boolean paymentTimekeeper(Payment payment) {
     	Payment.Record record = payment.history.get(payment.history.size() - 1);
         long elapsed = System.currentTimeMillis() - record.date.getTime();
         if (record.status.equals(Invoice.Status.WAITING_CONFIRMATION) && (elapsed > WAITING_CONF_LIMIT_MS)) {
@@ -94,7 +83,7 @@ public class Jmart
         } else {
             return false;
         }
-    }
+    }*/
     
     /*
     
@@ -164,4 +153,4 @@ public class Jmart
     
 
 
-}
+
