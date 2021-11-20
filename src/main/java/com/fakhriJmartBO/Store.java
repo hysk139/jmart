@@ -17,7 +17,7 @@ public class Store
     public static final String REGEX_PHONE = "[0-9]{9,12}";
     public static final String REGEX_NAME = "^[A-Z]((?!\\s{2}).)*.{4,20}$";
     
-    public Store(int accountId, String name, String address, String phoneNumber, double balance)
+    public Store(String name, String address, String phoneNumber, double balance)
     {
         this.balance = balance;
         this.name = name;

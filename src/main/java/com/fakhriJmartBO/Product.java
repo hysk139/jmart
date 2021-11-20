@@ -1,6 +1,6 @@
 package com.fakhriJmartBO;
 
-
+import com.fakhriJmartBO.dbjson.Serializable;
 
 public class Product extends Serializable 
 {

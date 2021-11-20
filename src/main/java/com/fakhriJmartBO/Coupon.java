@@ -1,5 +1,6 @@
 package com.fakhriJmartBO;
 
+import com.fakhriJmartBO.dbjson.Serializable;
 
 /**
  * Write a description of class Coupon here.

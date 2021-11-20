@@ -1,5 +1,8 @@
 package com.fakhriJmartBO;
 import java.util.Date;
+
+import com.fakhriJmartBO.dbjson.Serializable;
+
 import java.util.ArrayList;
 
 

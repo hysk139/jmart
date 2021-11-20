@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.fakhriJmartBO.dbjson.JsonDBEngine;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import java.util.Date;
@@ -46,7 +48,10 @@ public class Jmart
     public static void main(String[] args) 
     {
         
-    	SpringApplication.run(Jmart.class, args);
+    	
+    	 JsonDBEngine.Run(Jmart.class);
+         SpringApplication.run(Jmart.class, args);
+         Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
     	/*try{
     		JsonTable<Payment> table = new JsonTable<>(Payment.class,"C:/Users/Ahmad Fakhri/Documents/Kuliah/SMT 5/Praktikum OOP/Praktikum/jmart/randomPaymentList.json");
             ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-PP", Jmart::paymentTimekeeper);
