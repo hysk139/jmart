@@ -1,4 +1,8 @@
 package com.fakhriJmartBO;
+import java.security.MessageDigest;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +29,7 @@ public class Account extends Serializable
         
         this.name = name;
         this.email = email;
-        this.password = password;
+		this.password = password;
         this.balance = balance;
     }
     public boolean validate() {

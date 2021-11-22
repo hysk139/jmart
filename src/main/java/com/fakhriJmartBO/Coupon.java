@@ -34,7 +34,7 @@ public class Coupon extends Serializable
     }
     
     public boolean isUsed(){
-        return false;
+        return used;
     }
     
     public boolean canApply(double price, double discount){

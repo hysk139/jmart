@@ -1,5 +1,12 @@
 package com.fakhriJmartBO.controller;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
 
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +45,21 @@ public class AccountController implements BasicGetController<Account>
                     return null;
                 }
             }
-            return new Account(name, email, password, 0);
+            try {
+            	MessageDigest md;
+            	md = MessageDigest.getInstance("MD5");
+    			byte[] messageDigest = md.digest(password.getBytes());
+    	        BigInteger no = new BigInteger(1, messageDigest);
+    	        String hashtext = no.toString(16);
+    	        while (hashtext.length() < 32) {
+    	            hashtext = "0" + hashtext;
+    	        }
+    	        return new Account(name, email, hashtext, 0);
+    		} catch (NoSuchAlgorithmException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+            
         }
         return null;
 	}
@@ -50,12 +71,26 @@ public class AccountController implements BasicGetController<Account>
 		@RequestParam String password
 	)
 	{
-		for (Account a : accountTable) {
-			 if(a.email.equals(email) && a.password.equals(password)) {
-				return a;
+		try {
+        	MessageDigest md;
+        	md = MessageDigest.getInstance("MD5");
+			byte[] messageDigest = md.digest(password.getBytes());
+	        BigInteger no = new BigInteger(1, messageDigest);
+	        String hashtext = no.toString(16);
+	        while (hashtext.length() < 32) {
+	            hashtext = "0" + hashtext;
+	        }
+	        for (Account a : accountTable) {
+				 if(a.email.equals(email) && a.password.equals(hashtext)) {
+					return a;
+				}
 			}
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
+		
 	}
 	
 	
@@ -82,7 +117,7 @@ public class AccountController implements BasicGetController<Account>
     }
 	
 	@Override
-	public JsonTable<Account> getJsonTable() {
+	public  JsonTable<Account> getJsonTable() {
 		// TODO Auto-generated method stub
 		return accountTable;
 	}
