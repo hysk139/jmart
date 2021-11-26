@@ -12,40 +12,43 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.ArrayList;
+
+
 public abstract class Invoice extends Serializable
 {
-    public int buyerId;
-    public int productId;
-    public int complaintId;
-    public Rating rating;
-    public final Date date;
-
-    protected Invoice(int buyerId, int productId) {
-        this.buyerId = buyerId;
-        this.productId = productId;
-        date = java.util.Calendar.getInstance().getTime();
-        this.complaintId = -1;
-        this.rating = Rating.NONE;
-    }
-
-    public enum Status {
-        WAITING_CONFIRMATION,
-        CANCELLED,
-        ON_PROGRESS,
-        ON_DELIVERY,
-        COMPLAINT,
-        FINISHED,
-        FAILED,
-        DELIVERED
-    }
-
-    public enum Rating {
+   
+   public int buyerId;
+   public int complaintId;
+   public final Date date;
+   public int productId;
+   public Rating rating;
+   
+   public enum Rating {
         NONE,
+        GOOD,
         BAD,
-        NEUTRAL,
-        GOOD
+        NEUTRAL;       
     }
 
-    public abstract double getTotalPay(Product product);
-
+   public enum Status {
+        CANCELLED,
+        COMPLAINT,
+        DELIVERED,
+        FAILED,
+        FINISHED,
+        ON_DELIVERY,
+        ON_PROGRESS,
+        WAITING_CONFIRMATION; 
+   }
+    
+   protected Invoice(int buyerId, int productId){
+	   this.buyerId = buyerId;
+       this.productId = productId;
+       this.date = new Date();
+       this.rating = Rating.NONE;
+       this.complaintId = -1;
+    }
+    
+   public abstract double getTotalPay(Product product);
 }
