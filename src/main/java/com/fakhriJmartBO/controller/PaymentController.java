@@ -20,9 +20,11 @@ public class PaymentController implements BasicGetController<Payment> {
     public static final long ON_DELIVERY_LIMIT_MS = 1000;
     public static final long ON_PROGRESS_LIMIT_MS = 1000;
     public static final long WAITING_CONF_LIMIT_MS = 1000;
-    public static @JsonAutowired(value = Payment.class, filepath = "C:\\Users\\Ahmad Fakhri\\Documents\\Kuliah\\SMT 5\\Praktikum OOP\\Praktikum\\jmart\\src\\main\\java\\com\\randomPaymentList.json")
+    /*public static @JsonAutowired(value = Payment.class, filepath = "C:\\Users\\Ahmad Fakhri\\Documents\\Kuliah\\SMT 5\\Praktikum OOP\\Praktikum\\jmart\\src\\main\\java\\com\\randomPaymentList.json")
     JsonTable<Payment> paymentTable;
-    public static ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>("Thread", PaymentController::timekeeper);
+    public static ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>("Thread", PaymentController::timekeeper);*/
+    public static JsonTable<Payment> paymentTable;
+	public static ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>(PaymentController::timekeeper);
 
 
     @PostMapping("/{id}/accept")

@@ -25,7 +25,7 @@ import com.google.gson.stream.JsonReader;
 
 public class JsonTable<T> extends Vector<T>
 {
-    private static final Gson gson = new Gson();
+	private static final Gson gson = new Gson();
     public final String filepath;
 
     @SuppressWarnings("unchecked")

@@ -5,6 +5,7 @@ package com.fakhriJmartBO.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,7 +66,7 @@ public class ProductController implements BasicGetController<Product>{
     @ResponseBody
     List<Product> getProductByStore
             (
-                    @RequestParam int id,
+                    @PathVariable int id,
                     @RequestParam int page,
                     @RequestParam int pageSize
             )

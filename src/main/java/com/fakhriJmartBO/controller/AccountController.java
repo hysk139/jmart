@@ -42,7 +42,7 @@ public class AccountController implements BasicGetController<Account>
 		if((REGEX_PATTERN_EMAIL.matcher(email).find()) && (REGEX_PATTERN_PASSWORD.matcher(password).find()) && !name.isBlank()){
             for(Account account : accountTable){
                 if(account.email.equals(email)){
-                    return null;
+                	return null;
                 }
             }
             try {
@@ -54,6 +54,7 @@ public class AccountController implements BasicGetController<Account>
     	        while (hashtext.length() < 32) {
     	            hashtext = "0" + hashtext;
     	        }
+    	        getJsonTable().add(new Account(name, email, hashtext, 0));
     	        return new Account(name, email, hashtext, 0);
     		} catch (NoSuchAlgorithmException e) {
     			// TODO Auto-generated catch block
@@ -61,7 +62,7 @@ public class AccountController implements BasicGetController<Account>
     		}
             
         }
-        return null;
+		 return null;
 	}
 	
 	@PostMapping("/login")
@@ -95,8 +96,11 @@ public class AccountController implements BasicGetController<Account>
 	
 	
 	@PostMapping("/{id}/registerStore")
-    Store registerStore(int id, String name, String address, String phoneNumber){
-        if(accountTable.contains(accountTable.get(id)) && accountTable.get(id).store == null){
+    Store registerStore(@PathVariable int id, 
+    					@RequestParam String name, 
+    					@RequestParam String address, 
+    					@RequestParam String phoneNumber){
+		if(accountTable.contains(accountTable.get(id)) && accountTable.get(id).store == null){
             Store newStore = new Store(name, address, phoneNumber, 0);
             accountTable.get(id).store = newStore;
             return newStore;
@@ -106,7 +110,8 @@ public class AccountController implements BasicGetController<Account>
     }
 
     @PostMapping("/{id}/topUp")
-    boolean topUp(int id, double balance){
+    boolean topUp(@PathVariable int id, 
+    			  @RequestParam double balance){
         if(accountTable.contains(accountTable.get(id))){
             accountTable.get(id).balance += balance;
             return true;
