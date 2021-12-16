@@ -1,11 +1,11 @@
 package com.fakhriJmartBO;
 
 import java.util.Vector;
-import java.util.function.Function;
+import java.util.function.Function; 
 
 public class ObjectPoolThread<T> extends Thread{
-    private boolean exitSignal;
-    private Vector<T> objectPool;
+    private boolean exitSignal = false;
+    private Vector<T> objectPool = new Vector<>();
     private Function<T, Boolean> routine;
 
     public ObjectPoolThread(String name, Function<T, Boolean> routine){
@@ -18,32 +18,36 @@ public class ObjectPoolThread<T> extends Thread{
 
     public synchronized void add(T object){
         objectPool.add(object);
-        this.notify();
+        super.notify();
     }
     public synchronized void exit(){
         exitSignal = true;
-    }
-    @Override
-    public void run(){
-        while(!exitSignal){
-            try{
-                synchronized(this){
-                    System.out.println("running");
-                    for(T t : objectPool){
-                        routine.apply(t);
-                    }
-                    try{
-                        this.wait();
-                    }catch(InterruptedException e){
-                        e.printStackTrace();
-                    }
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
+        super.notify();
     }
     public int size(){
         return objectPool.size();
     }
+    @Override
+    public void run(){
+        while(true){
+            synchronized(this){
+                while(objectPool.isEmpty() && !exitSignal){
+                    this.interrupt();
+                    try{
+                        super.wait();
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                if (exitSignal) break;
+            }
+            for(int i = 0; i < objectPool.size(); ++i){
+                if(routine.apply(objectPool.get(i))){
+                    objectPool.set(i, null);
+                }
+            }
+            objectPool.removeIf(obj -> obj == null);
+        }
+    }
+
 }

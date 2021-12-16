@@ -14,6 +14,7 @@ public class Store
     public String address;
     public String phoneNumber;
     public double balance;
+    
     public static final String REGEX_PHONE = "[0-9]{9,12}";
     public static final String REGEX_NAME = "^[A-Z]((?!\\s{2}).)*.{4,20}$";
     
