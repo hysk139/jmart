@@ -3,6 +3,14 @@ package com.fakhriJmartBO;
 import java.util.Vector;
 import java.util.function.Function; 
 
+/**
+ * Class ObjectPoolThread
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
+
+
 public class ObjectPoolThread<T> extends Thread{
     private boolean exitSignal = false;
     private Vector<T> objectPool = new Vector<>();

@@ -7,16 +7,21 @@ import java.text.SimpleDateFormat;
 
 
 /**
- * Write a description of class Complaint here.
+ * Class Complaint that users use to describe the complaint
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ahmad Fakhri
+ * 
  */
 public class Complaint extends Serializable 
 {
     // instance variables - replace the example below with your own
     public String desc;
     public final Date date;
+    /**
+     * @param id
+     * @param desc
+     * Constructor for complaint
+     */
     public Complaint(int id, String desc)
     {
         

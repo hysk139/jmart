@@ -14,12 +14,23 @@ import com.fakhriJmartBO.dbjson.JsonTable;
 
 import java.util.List;
 
+
+/**
+ * @author Ahmad Fakhri
+ * This class is used as an API to use coupon functionalities 
+ *
+ */
+
 @RestController
 @RequestMapping("/coupon")
 public class CouponController implements BasicGetController<Coupon>{
 	@JsonAutowired(value = Coupon.class, filepath = "C:\\Users\\Ahmad Fakhri\\Documents\\Kuliah\\SMT 5\\Praktikum OOP\\Praktikum\\jmart\\src\\main\\java\\com\\account.json")
     public static JsonTable<Coupon> couponTable;
 
+    /**
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}/isUsed")
     boolean isUsed(
             @PathVariable int id
@@ -28,6 +39,12 @@ public class CouponController implements BasicGetController<Coupon>{
         return coup.isUsed();
     }
 
+    /**
+     * @param id
+     * @param price
+     * @param discount
+     * @return
+     */
     @GetMapping("/{id}/canApply")
     public boolean canApply(
     		@PathVariable int id, 
@@ -42,6 +59,11 @@ public class CouponController implements BasicGetController<Coupon>{
         return false;
     }
     
+    /**
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/getAvailable")
     List<Coupon> getAvailable(
     		@PathVariable int page, 

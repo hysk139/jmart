@@ -1,5 +1,12 @@
 package com.fakhriJmartBO;
 
+/**
+ * Class Pair
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
+
 public class Pair<T,U>{
 	public T first;
 	public U second;

@@ -1,12 +1,13 @@
 package com.fakhriJmartBO;
 
+
 import com.fakhriJmartBO.dbjson.Serializable;
 
 /**
- * Write a description of class Coupon here.
+ * Class Complaint that users use to describe the complaint
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ahmad Fakhri
+ * 
  */
 public class Coupon extends Serializable 
 {
@@ -23,6 +24,15 @@ public class Coupon extends Serializable
     private boolean used;
     
     
+    /**
+     * @param id
+     * @param name
+     * @param code
+     * @param type
+     * @param cut
+     * @param minimum
+     * Constructor for coupon
+     */
     public Coupon(int id, String name, int code, Type type, double cut, double minimum){
         
         this.name = name;
@@ -37,6 +47,11 @@ public class Coupon extends Serializable
         return used;
     }
     
+    /**
+     * @param price
+     * @param discount
+     * @return if it is appliable or not
+     */
     public boolean canApply(double price, double discount){
         if (Treasury.getAdjustedPrice(price, discount)>= minimum && this.used==false){
             return true;
@@ -46,6 +61,11 @@ public class Coupon extends Serializable
         }
     }
     
+    /**
+     * @param price
+     * @param discount
+     * @return to apply coupon
+     */
     public double apply(double price, double discount){
         this.used = true;
         if (type == Type.DISCOUNT){

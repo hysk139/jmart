@@ -12,6 +12,13 @@ import com.fakhriJmartBO.Predicate;
 import com.fakhriJmartBO.dbjson.JsonTable;
 import com.fakhriJmartBO.dbjson.Serializable;
 
+
+/**
+ * @author Ahmad Fakhri
+ * This class is used as an API to use basic get functionalities for multiple classes
+ *
+ */
+
 @RestController
 public interface BasicGetController<T extends Serializable> {
     

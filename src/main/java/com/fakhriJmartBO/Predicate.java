@@ -1,5 +1,11 @@
 package com.fakhriJmartBO;
 
+/**
+ * Class Predicate
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
 
 @FunctionalInterface
 public interface Predicate<T> {

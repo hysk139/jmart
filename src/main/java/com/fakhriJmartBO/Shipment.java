@@ -3,7 +3,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 
-
+/**
+ * Class Shipment which is the class for creating shipment plans for each product
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
 
 public class Shipment
 {
@@ -19,6 +24,13 @@ public class Shipment
     public static final SimpleDateFormat ESTIMATION_FORMAT 
     = new SimpleDateFormat("E MMMM dd yyyy");
     
+    /**
+     * @param address
+     * @param cost
+     * @param plan
+     * @param receipt
+     * Constructor
+     */
     public Shipment(String address, int cost, byte plan, String receipt){
         this.address = address;
         this.cost = cost;
@@ -26,6 +38,10 @@ public class Shipment
         this.receipt = receipt;
     }
     
+    /**
+     * @author Ahmad Fakhri
+     *	Inner class plan
+     */
     static class Plan{
         public final byte bit;
         private Plan(byte bit)
@@ -34,6 +50,10 @@ public class Shipment
         }
     }
     
+    /**
+     * @param reference
+     * @return the estimated time of arrival for invoice
+     */
     public String getEstimatedArrival (Date reference){
         if (this.plan == INSTANT.bit || this.plan == SAME_DAY.bit){
             return ESTIMATION_FORMAT.format(reference);
@@ -51,6 +71,10 @@ public class Shipment
         }
     }
     
+    /**
+     * @param reference
+     * @return checking duration
+     */
     public boolean isDuration(Plan reference){
         if((plan & reference.bit) != 0){
             return true;
@@ -60,6 +84,11 @@ public class Shipment
         }
     }
     
+    /**
+     * @param object
+     * @param reference
+     * @return checking duration
+     */
     public static boolean isDuration(byte object, Plan reference){
         if((object & reference.bit) != 0){
             return true;

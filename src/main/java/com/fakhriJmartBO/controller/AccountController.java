@@ -31,6 +31,12 @@ public class AccountController implements BasicGetController<Account>
 	@GetMapping
 	String index() { return "account page"; }
 	
+	/**
+	 * @param name
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	@PostMapping("/register")
 	Account register
 	(
@@ -65,6 +71,11 @@ public class AccountController implements BasicGetController<Account>
 		 return null;
 	}
 	
+	/**
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	@PostMapping("/login")
 	Account login
 	(
@@ -95,6 +106,13 @@ public class AccountController implements BasicGetController<Account>
 	}
 	
 	
+	/**
+	 * @param id
+	 * @param name
+	 * @param address
+	 * @param phoneNumber
+	 * @return
+	 */
 	@PostMapping("/{id}/registerStore")
     Store registerStore(@PathVariable int id, 
     					@RequestParam String name, 
@@ -109,6 +127,11 @@ public class AccountController implements BasicGetController<Account>
         }
     }
 
+    /**
+     * @param id
+     * @param balance
+     * @return
+     */
     @PostMapping("/{id}/topUp")
     boolean topUp(@PathVariable int id, 
     			  @RequestParam double balance){

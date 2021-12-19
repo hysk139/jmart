@@ -14,7 +14,12 @@ import java.util.ArrayList;
  */
 import java.util.ArrayList;
 
-
+/**
+ * Class Invoice that users use to have the invoice of its transaction history
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
 public abstract class Invoice extends Serializable
 {
    
@@ -42,7 +47,12 @@ public abstract class Invoice extends Serializable
         WAITING_CONFIRMATION; 
    }
     
-   protected Invoice(int buyerId, int productId){
+   /**
+ * @param buyerId
+ * @param productId
+ * Constructor for Invoice
+ */
+protected Invoice(int buyerId, int productId){
 	   this.buyerId = buyerId;
        this.productId = productId;
        this.date = new Date();

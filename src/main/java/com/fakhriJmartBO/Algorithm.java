@@ -7,6 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Class Algorithm that has multiple algorithm to be used in the app
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
 public class Algorithm {
 	private Algorithm() {
     }

@@ -2,10 +2,10 @@ package com.fakhriJmartBO;
 import java.util.regex.*;
 
 /**
- * Write a description of class Store here.
+ * Class Store which is the class for stores inside accounts in jmart
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ahmad Fakhri
+ * 
  */
 public class Store
 {
@@ -18,6 +18,13 @@ public class Store
     public static final String REGEX_PHONE = "[0-9]{9,12}";
     public static final String REGEX_NAME = "^[A-Z]((?!\\s{2}).)*.{4,20}$";
     
+    /**
+     * @param name
+     * @param address
+     * @param phoneNumber
+     * @param balance
+     * Constructor for store
+     */
     public Store(String name, String address, String phoneNumber, double balance)
     {
         this.balance = balance;
@@ -26,6 +33,14 @@ public class Store
         this.phoneNumber = phoneNumber;
     }
     
+    /**
+     * @param account
+     * @param name
+     * @param address
+     * @param phoneNumber
+     *
+     * Constructor for store
+     */
     public Store(Account account, String name, String address, String phoneNumber)
     {
         
@@ -34,6 +49,9 @@ public class Store
         this.phoneNumber = phoneNumber;
     }
     
+    /**
+     * @return true or false for validaring phone number and name pattern
+     */
     public boolean validate(){
         Pattern patternPhone = Pattern.compile(REGEX_PHONE);
         Pattern patternName = Pattern.compile(REGEX_NAME);

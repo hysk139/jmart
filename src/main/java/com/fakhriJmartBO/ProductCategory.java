@@ -1,6 +1,13 @@
 package com.fakhriJmartBO;
 
 
+/**
+ * Class ProductCategory which is the class category of products in category 
+ *
+ * @author Ahmad Fakhri
+ * 
+ */
+
 public enum ProductCategory
 {
     

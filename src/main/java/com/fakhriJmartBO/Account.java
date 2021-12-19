@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 import com.fakhriJmartBO.dbjson.Serializable;
 
 /**
- * Write a description of class Account here.
+ * Class Account that users use to login to the app and use the applications functionalities
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ahmad Fakhri
+ * 
  */
 public class Account extends Serializable 
 {
@@ -25,6 +25,13 @@ public class Account extends Serializable
     public static final String REGEX_EMAIL = "^\\w+([\\.]?[&\\*~\\w+])*@\\w+([\\.-]?)*(\\.\\w{2,3})+$";
     public static final String REGEX_PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$)(?=.*[A-Z]).{8,}$";
     
+    /**
+     * @param name
+     * @param email
+     * @param password
+     * @param balance
+     * Constructor for account
+     */
     public Account(String name, String email, String password, double balance) {
         this.name = name;
         this.email = email;
@@ -32,6 +39,9 @@ public class Account extends Serializable
         this.balance = balance;
     }
     
+    /**
+     * @return true or false to validate the validity of the email or password pattern
+     */
     public boolean validate() {
         Pattern emailPattern = Pattern.compile(REGEX_EMAIL);
         Pattern passwordPattern = Pattern.compile(REGEX_PASSWORD);
